@@ -125,7 +125,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Selectores Dependientes</h1>
+        <h1>Paises y Ciudades</h1>
 
         <div className="seccion-selects">
           <div className="selects-container">
