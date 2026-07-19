@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -9,7 +8,6 @@ function App() {
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState('');
   const [cargando, setCargando] = useState(false);
 
-  // URL del backend (cambiar en producción)
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
   useEffect(() => {
@@ -104,41 +102,32 @@ function App() {
           <h2>Manejo de imagenes</h2>
           <div className="imagenes-grid">
             
-            {/* Imagen desde public */}
+            {/* Imagen 1: Desde public (usando imagen de internet) */}
             <div className="imagen-item">
               <img 
-                src={`${process.env.PUBLIC_URL}/logo192.png`}
+                src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg" 
                 alt="Desde public"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
-                }}
+                style={{ width: '80px', height: '80px' }}
               />
               <p>Imagen desde public</p>
             </div>
 
-            {/* Imagen desde src (importada) */}
+            {/* Imagen 2: Desde src (usando imagen de internet) */}
             <div className="imagen-item">
               <img 
-                src={logo} 
+                src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" 
                 alt="Desde src"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg';
-                }}
+                style={{ width: '80px', height: '80px' }}
               />
               <p>Imagen desde src</p>
             </div>
 
-            {/* Imagen desde URL externa */}
+            {/* Imagen 3: Desde URL externa */}
             <div className="imagen-item">
               <img 
                 src="https://reactjs.org/logo-og.png" 
                 alt="Desde URL"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
-                }}
+                style={{ width: '80px', height: '80px' }}
               />
               <p>Imagen desde URL externa</p>
             </div>
