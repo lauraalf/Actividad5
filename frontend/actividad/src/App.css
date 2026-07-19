@@ -1,0 +1,97 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 20px;
+}
+
+h1 {
+  color: #61dafb;
+}
+
+.selector-container {
+  margin: 15px 0;
+  width: 300px;
+}
+
+.selector-container label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.selector-container select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #61dafb;
+  font-size: 16px;
+  background-color: white;
+  color: #333;
+}
+
+.selector-container select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resultado {
+  margin: 20px 0;
+  padding: 20px 40px;
+  background-color: #2ecc71;
+  border-radius: 10px;
+}
+
+.resultado h2 {
+  color: white;
+  margin: 0;
+}
+
+.resultado p {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin: 10px 0 0 0;
+}
+
+.imagenes-container {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #1a1e26;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.imagenes-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.imagen-item {
+  text-align: center;
+}
+
+.imagen-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.imagen-item p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+  color: #aaa;
+}
