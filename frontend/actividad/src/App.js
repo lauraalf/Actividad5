@@ -125,38 +125,9 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Proyecto React - Manejo de Imagenes y Selects</h1>
-
-        <div className="seccion-imagenes">
-          <h2>1. Imagenes desde carpetas</h2>
-          <div className="imagenes-grid">
-            <div className="imagen-item">
-              <img 
-                src={`${process.env.PUBLIC_URL}/imagenes/mexico.png`}
-                alt="Bandera Mexico"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://flagcdn.com/mx.svg';
-                }}
-              />
-              <p>Imagen desde public/imagenes/</p>
-            </div>
-            <div className="imagen-item">
-              <img 
-                src="https://reactjs.org/logo-og.png" 
-                alt="Logo React"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
-                }}
-              />
-              <p>Imagen desde URL externa</p>
-            </div>
-          </div>
-        </div>
+        <h1>Selectores Dependientes</h1>
 
         <div className="seccion-selects">
-          <h2>2. Select Dependiente</h2>
           <div className="selects-container">
             <div className="select-group">
               <label>Pais:</label>
@@ -226,7 +197,7 @@ function App() {
                   }}
                 />
               </div>
-              <p>Has seleccionado: <strong>{ciudadSeleccionada}</strong> en el pais <strong>{paisSeleccionado}</strong></p>
+              <p>Has seleccionado: <strong>{ciudadSeleccionada}</strong> en <strong>{paisSeleccionado}</strong></p>
             </div>
           )}
         </div>

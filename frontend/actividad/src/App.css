@@ -18,7 +18,7 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 600px;
   width: 100%;
   background-color: white;
   border-radius: 16px;
@@ -35,63 +35,13 @@ h1 {
   padding-bottom: 15px;
 }
 
-h2 {
-  color: #2c3e50;
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
-.seccion-imagenes {
-  background-color: #f8f9fa;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 30px;
-}
-
-.imagenes-grid {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.imagen-item {
-  text-align: center;
-  background-color: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.imagen-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.imagen-item img {
-  width: 200px;
-  height: 150px;
-  object-fit: contain;
-  border-radius: 8px;
-  border: 2px solid #e9ecef;
-}
-
-.imagen-item p {
-  margin-top: 12px;
-  font-weight: 600;
-  color: #2c3e50;
-}
-
 .seccion-selects {
-  background-color: #f8f9fa;
-  border-radius: 12px;
-  padding: 25px;
+  padding: 10px 0;
 }
 
 .selects-container {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -117,15 +67,13 @@ h2 {
   font-size: 16px;
   background-color: white;
   color: #333;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  appearance: none;
+  transition: border-color 0.3s ease;
   cursor: pointer;
 }
 
 .select-group select:focus {
   outline: none;
   border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
 .select-group select:hover {
@@ -168,11 +116,6 @@ h2 {
     padding: 20px;
   }
 
-  .imagen-item img {
-    width: 150px;
-    height: 120px;
-  }
-
   .selects-container {
     flex-direction: column;
     gap: 20px;
@@ -180,9 +123,5 @@ h2 {
 
   h1 {
     font-size: 22px;
-  }
-
-  h2 {
-    font-size: 18px;
   }
 }
