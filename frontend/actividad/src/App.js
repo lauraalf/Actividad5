@@ -205,22 +205,6 @@ function App() {
             </div>
           )}
         </div>
-
-        <div style={{ marginTop: '30px', padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
-          <h3 style={{ marginBottom: '15px' }}>Banderas desde src/assets/banderas/</h3>
-          <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <img src={banderaMexico} alt="Mexico" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
-            <img src={banderaEspana} alt="España" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
-            <img src={banderaColombia} alt="Colombia" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
-            <img src={banderaArgentina} alt="Argentina" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
-            <img src={banderaChile} alt="Chile" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
-            <img src={banderaPeru} alt="Peru" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
-            <img src={banderaRepublicaDominicana} alt="Republica Dominicana" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
-          </div>
-          <p style={{ fontSize: '14px', color: '#666', marginTop: '15px' }}>
-            Estas banderas vienen de <strong>src/assets/banderas/</strong>
-          </p>
-        </div>
       </div>
     </div>
   );
