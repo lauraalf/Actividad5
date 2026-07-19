@@ -19,24 +19,9 @@ function App() {
   const [paisSeleccionado, setPaisSeleccionado] = useState('');
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState('');
   const [cargando, setCargando] = useState(false);
-  const [usandoBackend, setUsandoBackend] = useState(true);
 
   useEffect(() => {
-    const cargarPaises = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/paises');
-        if (!response.ok) throw new Error('Backend no disponible');
-        const data = await response.json();
-        setPaises(data);
-        setUsandoBackend(true);
-        console.log('Usando backend');
-      } catch (error) {
-        console.log('Usando datos locales');
-        setPaises(paisesData);
-        setUsandoBackend(false);
-      }
-    };
-    cargarPaises();
+    setPaises(paisesData);
   }, []);
 
   useEffect(() => {
@@ -46,34 +31,14 @@ function App() {
       return;
     }
 
-    const cargarCiudades = async () => {
-      setCargando(true);
-      
-      if (usandoBackend) {
-        try {
-          const response = await fetch(`http://localhost:5000/api/ciudades?pais=${paisSeleccionado}`);
-          if (!response.ok) throw new Error('Error en backend');
-          const data = await response.json();
-          setCiudades(data);
-        } catch (error) {
-          console.log('Usando datos locales para ciudades');
-          const ciudadesPais = ciudadesData[paisSeleccionado] || [];
-          setCiudades(ciudadesPais);
-        }
-      } else {
-        setTimeout(() => {
-          const ciudadesPais = ciudadesData[paisSeleccionado] || [];
-          setCiudades(ciudadesPais);
-          setCargando(false);
-        }, 300);
-      }
-      
+    setCargando(true);
+    setTimeout(() => {
+      const ciudadesPais = ciudadesData[paisSeleccionado] || [];
+      setCiudades(ciudadesPais);
       setCiudadSeleccionada('');
       setCargando(false);
-    };
-    
-    cargarCiudades();
-  }, [paisSeleccionado, usandoBackend]);
+    }, 300);
+  }, [paisSeleccionado]);
 
   const manejarCambioPais = (e) => {
     setPaisSeleccionado(e.target.value);
@@ -83,113 +48,103 @@ function App() {
     setCiudadSeleccionada(e.target.value);
   };
 
-  const codigosBanderas = {
-    'Mexico': 'mx',
-    'España': 'es',
-    'Colombia': 'co',
-    'Argentina': 'ar',
-    'Chile': 'cl',
-    'Peru': 'pe',
-    'Republica Dominicana': 'do'
+  const carpetasPaises = {
+    'Mexico': 'mexico',
+    'España': 'espana',
+    'Colombia': 'colombia',
+    'Argentina': 'argentina',
+    'Chile': 'chile',
+    'Peru': 'peru',
+    'Republica Dominicana': 'republica-dominicana'
+  };
+
+  const archivosBanderas = {
+    'Mexico': 'mexico.png',
+    'España': 'espana.png',
+    'Colombia': 'colombia.png',
+    'Argentina': 'argentina.png',
+    'Chile': 'chile.png',
+    'Peru': 'peru.png',
+    'Republica Dominicana': 'republica-dominicana.png'
+  };
+
+  const archivosCiudades = {
+    'Ciudad de Mexico': 'ciudad-de-mexico.jpg',
+    'Guadalajara': 'guadalajara.jpg',
+    'Monterrey': 'monterrey.jpg',
+    'Puebla': 'puebla.jpg',
+    'Cancun': 'cancun.jpg',
+    'Madrid': 'madrid.jpg',
+    'Barcelona': 'barcelona.jpg',
+    'Sevilla': 'sevilla.jpg',
+    'Valencia': 'valencia.jpg',
+    'Bilbao': 'bilbao.jpg',
+    'Bogota': 'bogota.jpg',
+    'Medellin': 'medellin.jpg',
+    'Cali': 'cali.jpg',
+    'Barranquilla': 'barranquilla.jpg',
+    'Cartagena': 'cartagena.jpg',
+    'Buenos Aires': 'buenos-aires.jpg',
+    'Cordoba': 'cordoba.jpg',
+    'Mendoza': 'mendoza.jpg',
+    'Rosario': 'rosario.jpg',
+    'La Plata': 'la-plata.jpg',
+    'Santiago': 'santiago.jpg',
+    'Valparaiso': 'valparaiso.jpg',
+    'Concepcion': 'concepcion.jpg',
+    'La Serena': 'la-serena.jpg',
+    'Antofagasta': 'antofagasta.jpg',
+    'Lima': 'lima.jpg',
+    'Cusco': 'cusco.jpg',
+    'Arequipa': 'arequipa.jpg',
+    'Trujillo': 'trujillo.jpg',
+    'Chiclayo': 'chiclayo.jpg',
+    'Santo Domingo': 'santo-domingo.jpg',
+    'Puerto Plata': 'puerto-plata.jpg',
+    'La Romana': 'la-romana.jpg',
+    'San Pedro': 'san-pedro.jpg'
   };
 
   const obtenerBandera = (pais) => {
-    const codigo = codigosBanderas[pais];
-    if (codigo) {
-      return `https://flagcdn.com/64x48/${codigo}.png`;
+    const archivo = archivosBanderas[pais];
+    if (archivo) {
+      return `${process.env.PUBLIC_URL}/imagenes/${archivo}`;
+    }
+    return null;
+  };
+
+  const obtenerImagenCiudad = (pais, ciudad) => {
+    const carpeta = carpetasPaises[pais];
+    const archivo = archivosCiudades[ciudad];
+    if (carpeta && archivo) {
+      return `${process.env.PUBLIC_URL}/imagenes/ciudades/${carpeta}/${archivo}`;
     }
     return null;
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Selectores Dependientes</h1>
-        <p>Selecciona un pais y luego una ciudad</p>
-        
-        {!usandoBackend && (
-          <p style={{ color: '#f39c12', fontSize: '14px' }}>
-            Modo sin backend
-          </p>
-        )}
+      <div className="container">
+        <h1>Proyecto React - Manejo de Imagenes y Selects</h1>
 
-        <div className="selector-container">
-          <label>Pais:</label>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {paisSeleccionado && (
-              <img 
-                src={obtenerBandera(paisSeleccionado)} 
-                alt={paisSeleccionado}
-                style={{ width: '40px', height: '30px', objectFit: 'cover' }}
-              />
-            )}
-            <select value={paisSeleccionado} onChange={manejarCambioPais}>
-              <option value="">-- Selecciona un pais --</option>
-              {paises.map((pais) => (
-                <option key={pais} value={pais}>
-                  {pais}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="selector-container">
-          <label>Ciudad:</label>
-          <select 
-            value={ciudadSeleccionada} 
-            onChange={manejarCambioCiudad}
-            disabled={ciudades.length === 0}
-          >
-            <option value="">-- Selecciona un pais primero --</option>
-            {ciudades.map((ciudad) => (
-              <option key={ciudad} value={ciudad}>
-                {ciudad}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {cargando && <p>Cargando ciudades...</p>}
-
-        {ciudadSeleccionada && (
-          <div className="resultado">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-              <img 
-                src={obtenerBandera(paisSeleccionado)} 
-                alt={paisSeleccionado}
-                style={{ width: '60px', height: '40px', objectFit: 'cover' }}
-              />
-              <div>
-                <h2>Has seleccionado:</h2>
-                <p>{ciudadSeleccionada}, {paisSeleccionado}</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="imagenes-container">
-          <h2>Manejo de imagenes</h2>
+        <div className="seccion-imagenes">
+          <h2>1. Imagenes desde carpetas</h2>
           <div className="imagenes-grid">
-            
             <div className="imagen-item">
               <img 
-                src="/logo192.png" 
-                alt="Desde public" 
-                style={{ width: '80px', height: '80px' }}
+                src={`${process.env.PUBLIC_URL}/imagenes/mexico.png`}
+                alt="Bandera Mexico"
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
+                  e.target.src = 'https://flagcdn.com/mx.svg';
                 }}
               />
-              <p>Imagen desde public</p>
+              <p>Imagen desde public/imagenes/</p>
             </div>
-
             <div className="imagen-item">
               <img 
                 src="https://reactjs.org/logo-og.png" 
-                alt="Desde URL" 
-                style={{ width: '80px', height: '80px' }}
+                alt="Logo React"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
@@ -197,26 +152,85 @@ function App() {
               />
               <p>Imagen desde URL externa</p>
             </div>
+          </div>
+        </div>
 
-            <div className="imagen-item">
-              <img 
-                src="https://flagcdn.com/mx.svg" 
-                alt="Bandera Mexico" 
-                style={{ width: '80px', height: '60px', objectFit: 'cover' }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
-                }}
-              />
-              <p>Bandera desde URL</p>
+        <div className="seccion-selects">
+          <h2>2. Select Dependiente</h2>
+          <div className="selects-container">
+            <div className="select-group">
+              <label>Pais:</label>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                {paisSeleccionado && (
+                  <img 
+                    src={obtenerBandera(paisSeleccionado)} 
+                    alt={paisSeleccionado}
+                    style={{ width: '40px', height: '30px', objectFit: 'cover', border: '1px solid #ddd', borderRadius: '4px' }}
+                  />
+                )}
+                <select value={paisSeleccionado} onChange={manejarCambioPais}>
+                  <option value="">-- Selecciona un Pais --</option>
+                  {paises.map((pais) => (
+                    <option key={pais} value={pais}>
+                      {pais}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
+            <div className="select-group">
+              <label>Ciudad:</label>
+              <select 
+                value={ciudadSeleccionada} 
+                onChange={manejarCambioCiudad}
+                disabled={ciudades.length === 0}
+              >
+                <option value="">
+                  {paisSeleccionado ? '-- Selecciona una Ciudad --' : 'Primero elige un Pais'}
+                </option>
+                {ciudades.map((ciudad) => (
+                  <option key={ciudad} value={ciudad}>
+                    {ciudad}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <p style={{ marginTop: '15px', fontSize: '14px', color: '#aaa' }}>
-            Las imagenes pueden venir de public, src, o URLs externas
-          </p>
+
+          {cargando && <p className="cargando">Cargando ciudades...</p>}
+
+          {ciudadSeleccionada && (
+            <div className="resultado">
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px', marginBottom: '15px' }}>
+                {paisSeleccionado && (
+                  <img 
+                    src={obtenerBandera(paisSeleccionado)} 
+                    alt={paisSeleccionado}
+                    style={{ width: '50px', height: '35px', objectFit: 'cover', border: '1px solid #ddd', borderRadius: '4px' }}
+                  />
+                )}
+                <img 
+                  src={obtenerImagenCiudad(paisSeleccionado, ciudadSeleccionada)} 
+                  alt={ciudadSeleccionada}
+                  style={{ 
+                    width: '200px', 
+                    height: '150px', 
+                    objectFit: 'cover', 
+                    borderRadius: '8px',
+                    border: '2px solid #ddd'
+                  }}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
+              <p>Has seleccionado: <strong>{ciudadSeleccionada}</strong> en el pais <strong>{paisSeleccionado}</strong></p>
+            </div>
+          )}
         </div>
-      </header>
+      </div>
     </div>
   );
 }
