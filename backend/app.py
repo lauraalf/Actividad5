@@ -66,7 +66,6 @@ function App() {
     setCiudadSeleccionada(e.target.value);
   };
 
-  // Obtener la bandera del país seleccionado
   const obtenerBandera = (pais) => {
     const codigo = codigosBanderas[pais];
     if (codigo) {
@@ -140,7 +139,6 @@ function App() {
           <h2>📸 Manejo de imagenes</h2>
           <div className="imagenes-grid">
             
-            {/* Imagen desde public */}
             <div className="imagen-item">
               <img 
                 src="/logo192.png" 
@@ -153,7 +151,6 @@ function App() {
               <p>Imagen desde public</p>
             </div>
 
-            {/* Imagen desde src (importada) */}
             <div className="imagen-item">
               <img 
                 src="https://reactjs.org/logo-og.png" 
@@ -163,7 +160,6 @@ function App() {
               <p>Imagen desde URL externa</p>
             </div>
 
-            {/* Imagen de bandera de ejemplo */}
             <div className="imagen-item">
               <img 
                 src="https://flagcdn.com/mx.svg" 
