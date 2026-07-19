@@ -9,7 +9,7 @@ function App() {
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState('');
   const [cargando, setCargando] = useState(false);
 
-  // Usar variable de entorno para la URL del backend
+  // URL del backend (cambiar en producción)
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
   useEffect(() => {
@@ -103,18 +103,46 @@ function App() {
         <div className="imagenes-container">
           <h2>Manejo de imagenes</h2>
           <div className="imagenes-grid">
+            
+            {/* Imagen desde public */}
             <div className="imagen-item">
-              <img src="/logo192.png" alt="Desde public" />
+              <img 
+                src={`${process.env.PUBLIC_URL}/logo192.png`}
+                alt="Desde public"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
+                }}
+              />
               <p>Imagen desde public</p>
             </div>
+
+            {/* Imagen desde src (importada) */}
             <div className="imagen-item">
-              <img src={logo} alt="Desde src" />
+              <img 
+                src={logo} 
+                alt="Desde src"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg';
+                }}
+              />
               <p>Imagen desde src</p>
             </div>
+
+            {/* Imagen desde URL externa */}
             <div className="imagen-item">
-              <img src="https://reactjs.org/logo-og.png" alt="Desde URL" />
+              <img 
+                src="https://reactjs.org/logo-og.png" 
+                alt="Desde URL"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/react.svg';
+                }}
+              />
               <p>Imagen desde URL externa</p>
             </div>
+
           </div>
           <p>Las imagenes pueden venir de public, src, o URLs externas</p>
         </div>
