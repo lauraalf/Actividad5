@@ -16,6 +16,7 @@
 
 h1 {
   color: #61dafb;
+  margin-bottom: 10px;
 }
 
 .selector-container {
@@ -27,28 +28,36 @@ h1 {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  font-size: 18px;
 }
 
 .selector-container select {
   width: 100%;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 12px;
+  border-radius: 8px;
   border: 2px solid #61dafb;
   font-size: 16px;
   background-color: white;
   color: #333;
+  transition: all 0.3s ease;
+}
+
+.selector-container select:hover {
+  box-shadow: 0 0 15px rgba(97, 218, 251, 0.3);
 }
 
 .selector-container select:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  border-color: #666;
 }
 
 .resultado {
   margin: 20px 0;
   padding: 20px 40px;
   background-color: #2ecc71;
-  border-radius: 10px;
+  border-radius: 15px;
+  animation: aparecer 0.5s ease;
 }
 
 .resultado h2 {
@@ -57,7 +66,7 @@ h1 {
 }
 
 .resultado p {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: white;
   margin: 10px 0 0 0;
@@ -65,9 +74,9 @@ h1 {
 
 .imagenes-container {
   margin-top: 40px;
-  padding: 20px;
+  padding: 30px;
   background-color: #1a1e26;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 80%;
   max-width: 800px;
 }
@@ -75,7 +84,7 @@ h1 {
 .imagenes-grid {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 40px;
   flex-wrap: wrap;
   margin: 20px 0;
 }
@@ -88,10 +97,26 @@ h1 {
   width: 80px;
   height: 80px;
   object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.imagen-item img:hover {
+  transform: scale(1.1);
 }
 
 .imagen-item p {
   margin: 10px 0 0 0;
   font-size: 14px;
   color: #aaa;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
