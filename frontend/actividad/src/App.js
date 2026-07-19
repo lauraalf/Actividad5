@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+// Banderas desde src/assets/banderas/
+import banderaMexico from './assets/banderas/mexico.png';
+import banderaEspana from './assets/banderas/espana.png';
+import banderaColombia from './assets/banderas/colombia.png';
+import banderaArgentina from './assets/banderas/argentina.png';
+import banderaChile from './assets/banderas/chile.png';
+import banderaPeru from './assets/banderas/peru.png';
+import banderaRepublicaDominicana from './assets/banderas/republica-dominicana.png';
+
 const paisesData = ["Mexico", "España", "Colombia", "Argentina", "Chile", "Peru", "Republica Dominicana"];
 
 const ciudadesData = {
@@ -48,6 +57,19 @@ function App() {
     setCiudadSeleccionada(e.target.value);
   };
 
+  const obtenerBandera = (pais) => {
+    const banderas = {
+      'Mexico': banderaMexico,
+      'España': banderaEspana,
+      'Colombia': banderaColombia,
+      'Argentina': banderaArgentina,
+      'Chile': banderaChile,
+      'Peru': banderaPeru,
+      'Republica Dominicana': banderaRepublicaDominicana
+    };
+    return banderas[pais] || null;
+  };
+
   const carpetasPaises = {
     'Mexico': 'mexico',
     'España': 'espana',
@@ -56,16 +78,6 @@ function App() {
     'Chile': 'chile',
     'Peru': 'peru',
     'Republica Dominicana': 'republica-dominicana'
-  };
-
-  const archivosBanderas = {
-    'Mexico': 'mexico.png',
-    'España': 'espana.png',
-    'Colombia': 'colombia.png',
-    'Argentina': 'argentina.png',
-    'Chile': 'chile.png',
-    'Peru': 'peru.png',
-    'Republica Dominicana': 'republica-dominicana.png'
   };
 
   const archivosCiudades = {
@@ -103,14 +115,6 @@ function App() {
     'Puerto Plata': 'puerto-plata.jpg',
     'La Romana': 'la-romana.jpg',
     'San Pedro': 'san-pedro.jpg'
-  };
-
-  const obtenerBandera = (pais) => {
-    const archivo = archivosBanderas[pais];
-    if (archivo) {
-      return `${process.env.PUBLIC_URL}/imagenes/${archivo}`;
-    }
-    return null;
   };
 
   const obtenerImagenCiudad = (pais, ciudad) => {
@@ -200,6 +204,22 @@ function App() {
               <p>Has seleccionado: <strong>{ciudadSeleccionada}</strong> en <strong>{paisSeleccionado}</strong></p>
             </div>
           )}
+        </div>
+
+        <div style={{ marginTop: '30px', padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
+          <h3 style={{ marginBottom: '15px' }}>Banderas desde src/assets/banderas/</h3>
+          <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <img src={banderaMexico} alt="Mexico" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
+            <img src={banderaEspana} alt="España" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
+            <img src={banderaColombia} alt="Colombia" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
+            <img src={banderaArgentina} alt="Argentina" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
+            <img src={banderaChile} alt="Chile" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
+            <img src={banderaPeru} alt="Peru" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
+            <img src={banderaRepublicaDominicana} alt="Republica Dominicana" style={{ width: '60px', height: '40px', objectFit: 'cover', border: '1px solid #ddd' }} />
+          </div>
+          <p style={{ fontSize: '14px', color: '#666', marginTop: '15px' }}>
+            Estas banderas vienen de <strong>src/assets/banderas/</strong>
+          </p>
         </div>
       </div>
     </div>
